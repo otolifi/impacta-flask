@@ -1,3 +1,9 @@
+# Tecnologia WEB
+# AC04 SI/ADS 2A- Tutorial Flask
+# alunos: otoniel.filho@aluno.faculdadeimpacta.com.br
+# amanda.locatelli@aluno.faculdadeimpacta.com.br
+
+
 # coding: utf-8
 
 # imports
@@ -25,7 +31,7 @@ def conectar_bd():
 def criar_bd():
     with closing(conectar_bd()) as bd:
         with app.open_resource('esquema.sql') as sql:
-            bd.cursor().executescript(sql.read().decode('utf-8'))
+            bd.cursor().executescript(sql.read())
         bd.commit()
 
 @app.before_request
@@ -72,7 +78,6 @@ def login():
 def logout():
     session.pop('logado', None)
     return redirect(url_for('exibir_entradas'))
-
 
 if __name__ == '__main__':
     app.run()
